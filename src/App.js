@@ -6,7 +6,6 @@ import Answer from "./components/Answer";
 import Button from "./components/UI/Button";
 import Switch from "./components/UI/Switch";
 import { Paper, Box } from "@mui/material";
-import { getJoke } from "./components/service/index.js";
 import Loading from "./components/UI/Loading";
 import ErrorBlock from "./components/UI/ErrorBlock";
 import useJoke from "./hooks/useJoke";
@@ -22,6 +21,7 @@ function App() {
   const [isHiddenAnswer, setIsHiddenAnswer] = useState(true);
   const [childrenRestriction, setChildrenRestriction] = useState(false);
   const onClickButton = () => {
+  console.log(jokeResponse);
     if (!error) {
       setIsHiddenAnswer(!isHiddenAnswer);
       if (isHiddenAnswer) {
@@ -39,12 +39,12 @@ function App() {
 
   useEffect(() => {
     getNewJoke(childrenRestriction);
-  }, [getNewJoke]);
+  }, [getNewJoke, childrenRestriction]);
 
   const handlerChildrenRestriction = () => {
     setChildrenRestriction(!childrenRestriction);
 
-    getNewJoke(childrenRestriction);
+     getNewJoke(childrenRestriction);
      setIsHiddenAnswer(true);
      setText(SEE_RESPONSE);
   };

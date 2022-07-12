@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import { useState, useCallback } from "react";
 
 const BlaguesAPI = require("blagues-api");
 const blagues = new BlaguesAPI(process.env.REACT_APP_BLAGUE_API_KEY);
@@ -42,12 +42,11 @@ const useJoke = () => {
       });
       setError("Erreur API: " + err.message);
       setIsLoading(false);
-      return;
+
     }
     setError(null);
     setIsLoading(false);
-    return jokeResponse;
-  }, []);
+  },[]);
   return { error, isLoading, jokeResponse, getNewJoke };
 };
 
