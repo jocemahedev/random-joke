@@ -1,11 +1,11 @@
 import React from "react";
-
+import {Alert} from  "@mui/material";
 
 const ErrorBlock = (props) => {
   return (
-    <div className="dotwrapper">
+    <Alert variant="filled" severity="error">
       {props.text}
-    </div>
+    </Alert>
   );
 };
 export default ErrorBlock;
