@@ -39,13 +39,16 @@ const Android12Switch = styled(Switch)(({ theme }) => ({
 
 export default function CustomizedSwitches(props) {
   return (
-    <FormGroup>
-      <FormControlLabel
-        control={<Android12Switch sx={{ m: 1 }} checked={props.checked} />}
-        label={props.text}
-        onChange={props.onChangeHandler}
-
-      />
-    </FormGroup>
+    <div
+      style={{margin: 'auto',width: 'fit-content'}}
+    >
+      <FormGroup>
+        <FormControlLabel
+          control={<Android12Switch sx={{ mx: "1" }} checked={props.checked} />}
+          label={props.text}
+          onChange={props.onChangeHandler}
+        />
+      </FormGroup>
+    </div>
   );
-};
+}

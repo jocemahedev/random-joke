@@ -23,6 +23,7 @@ switch (props.type) {
   imageChoosen = RandArray(myArray);
     break;
 }
+
 return <img alt="rigolus" className="gif" src={imageChoosen} height="150px" width="150px"/>
 
 }

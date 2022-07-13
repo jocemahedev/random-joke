@@ -5,7 +5,8 @@ import ImageGif from "./components/ImageGif";
 import Answer from "./components/Answer";
 import Button from "./components/UI/Button";
 import Switch from "./components/UI/Switch";
-import { Paper, Box } from "@mui/material";
+import CustomizedSwitches from "./components/UI/Switch";
+import { Card, CardHeader, Box, CardContent } from "@mui/material";
 import Loading from "./components/UI/Loading";
 import ErrorBlock from "./components/UI/ErrorBlock";
 import useJoke from "./hooks/useJoke";
@@ -14,14 +15,14 @@ const SEE_RESPONSE = "Fais moi rire";
 const JOKE_AGAIN = "Une autre !!!";
 const LOADING_TEXT = "";
 const ERROR_TEXT = "Try Again";
-const CHILDREN_ONLY = "Blagounettes pour les enfants";
+const CHILDREN_ONLY = "👶 only";
 
 function App() {
   const [currentButtonText, setText] = useState(SEE_RESPONSE);
   const [isHiddenAnswer, setIsHiddenAnswer] = useState(true);
   const [childrenRestriction, setChildrenRestriction] = useState(false);
   const onClickButton = () => {
-  console.log(jokeResponse);
+    console.log(jokeResponse);
     if (!error) {
       setIsHiddenAnswer(!isHiddenAnswer);
       if (isHiddenAnswer) {
@@ -44,36 +45,45 @@ function App() {
   const handlerChildrenRestriction = () => {
     setChildrenRestriction(!childrenRestriction);
 
-     getNewJoke(childrenRestriction);
-     setIsHiddenAnswer(true);
-     setText(SEE_RESPONSE);
+    getNewJoke(childrenRestriction);
+    setIsHiddenAnswer(true);
+    setText(SEE_RESPONSE);
   };
   return (
-    <Paper
+    <Card
       sx={{
-        p: 10,
+        p: 0,
+        paddingBottom: 5,
         mx: "auto",
-        minHeight: 430,
-        minWidth: 275,
         maxWidth: 800,
-        width: "100%",
       }}
       elevation={10}
     >
-      <Switch
-        checked={childrenRestriction}
-        onChangeHandler={handlerChildrenRestriction}
-        text={CHILDREN_ONLY}
-      ></Switch>
-      <Box sx={{ p: 5, textAlign: "center", mx: "auto", width: "auto" }}>
-        {error && <ErrorBlock text={error} />}
-        {!isLoading && <Joke text={jokeResponse.joke} />}
-        {isLoading && <Loading text={LOADING_TEXT} />}
-        {!isHiddenAnswer && <Answer text={jokeResponse.answer} />}
-        {!isHiddenAnswer && <ImageGif type={jokeResponse.type} />}
-      </Box>
-      <Button onClickHandler={onClickButton} text={currentButtonText} />
-    </Paper>
+      <CardHeader
+        title="🤣 Blagues a JOJO 🤣"
+        sx={{
+          backgroundColor: "#002964",
+          color: "#fff",
+          fontWeight: "bold",
+          textAlign: "center",
+        }}
+      />
+      <CardContent>
+        <CustomizedSwitches
+          checked={childrenRestriction}
+          onChangeHandler={handlerChildrenRestriction}
+          text={CHILDREN_ONLY}
+        ></CustomizedSwitches>
+        <Box sx={{ p: 5, textAlign: "center", mx: "auto", width: "auto" }}>
+          {error && <ErrorBlock text={error} />}
+          {!isLoading && <Joke text={jokeResponse.joke} />}
+          {isLoading && <Loading text={LOADING_TEXT} />}
+          {!isHiddenAnswer && <Answer text={jokeResponse.answer} />}
+          {!isHiddenAnswer && <ImageGif type={jokeResponse.type} />}
+        </Box>
+        <Button onClickHandler={onClickButton} text={currentButtonText} />
+      </CardContent>
+    </Card>
   );
 }
 
