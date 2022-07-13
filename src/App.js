@@ -4,7 +4,6 @@ import Joke from "./components/Joke";
 import ImageGif from "./components/ImageGif";
 import Answer from "./components/Answer";
 import Button from "./components/UI/Button";
-import Switch from "./components/UI/Switch";
 import CustomizedSwitches from "./components/UI/Switch";
 import { Card, CardHeader, Box, CardContent } from "@mui/material";
 import Loading from "./components/UI/Loading";
